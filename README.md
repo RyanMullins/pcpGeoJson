@@ -15,20 +15,14 @@ Creates a parallel coordinate plot for the properties, with values of type _Numb
 
 The *collection* parameter is required and **must** be a GeoJSON Feature collection. Behavior is undefined if this parameter is not a Feature Collection. 
 
-The *options* parameter is optional and allows you to define the following properties:
+The *options* parameter is optional object that allows you to define the following properties:
 
-```JSON
-
-{
-    "id"      : "", // [String] The ID of the container for the PCP, defaults to 'body'
-    "keys"    : [], // [Array] List of all property names to be used as dimensions of the PCP, defaults to all properties in the first feature that has data of type Number
-    "buffers" : [], // [Array] Array of numbers, must specify all; [top, right, bottom, left], defaults to [30, 10, 10, 10]
-    "width"   : 1,  // [Number] Width of the plot, defaults to 960
-    "height"  : 1,  // [Number] Height of the plot, defaults to 500 
-    "linker"  : lk  // [Function] Callback taking a single parameter, passed a D3 selection object containing all foreground lines representing the features in the collection.
-}
-
-```
+* _id_      : [String] The ID of the container for the PCP, defaults to 'body'
+* _keys_    : [Array] List of all property names to be used as dimensions of the PCP, defaults to all properties in the first feature that has data of type Number
+* _buffers_ : [Array] Array of numbers, must specify all; [top, right, bottom, left], defaults to [30, 10, 10, 10]
+* _width_   : [Number] Width of the plot, defaults to 960
+* _height_  : [Number] Height of the plot, defaults to 500 
+* _linker_  : [Function] Callback taking a single parameter, passed a D3 selection object containing all foreground lines representing the features in the collection.
 
 ### Example Usage
 
