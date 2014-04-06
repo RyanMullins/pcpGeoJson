@@ -119,7 +119,7 @@ d3.pcpGeoJson = function (collection, options) {
 
   function position (key) {
     var v = dragging[key];
-    return v === null ? x(key) : v;
+    return ((v === null || v === undefined) ? x(key) : v);
   }
 
   function transition (g) {
