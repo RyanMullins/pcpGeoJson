@@ -1,5 +1,5 @@
-D3 Parallel Coordinate Plots for GeoJSON Feature Collections
-============================================================
+Parallel Coordinate Plots for GeoJSON Feature Collections
+=========================================================
 
 This is an extremely simple plug-in for D3 that generates an SVG-based parallel coordinate plot for a [GeoJSON][geojson] [Feature Collection][geojsonfc]. 
 
@@ -9,7 +9,7 @@ Again, this is an extremely simple implementation of a Parallel Coordinate Plot.
 
 ## API 
 
-<a name="d3_parcoords" href="#d3_pcpgeojson">#</a>d3.**pcpGeoJson**(_collection_[, _options_]);
+<a name="d3_pcpgeojson" href="#d3_pcpgeojson">#</a> d3.**pcpGeoJson**(_collection_[, _options_]);
 
 Creates a parallel coordinate plot for the properties, with values of type _Number_, of each [Features][geojsonf] in a [Feature Collection][geojsonfc]. 
 
@@ -20,12 +20,12 @@ The *options* parameter is optional and allows you to define the following prope
 ```JSON
 
 {
-    "id"      : [String] The ID of the container for the PCP, defaults to 'body'
-    "keys"    : [Array] List of all property names to be used as dimensions of the PCP, defaults to all properties in the first feature that has data of type Number
-    "buffers" : [Array] Array of numbers, must specify all; [top, right, bottom, left], defaults to [30, 10, 10, 10]
-    "width"   : [Number] Width of the plot, defaults to 960
-    "height"  : [Number] Height of the plot, defaults to 500 
-    "linker"  : [Function] Callback taking a single parameter, passed a D3 selection object containing all foreground lines representing the features in the collection.
+    "id"      : "", // [String] The ID of the container for the PCP, defaults to 'body'
+    "keys"    : [], // [Array] List of all property names to be used as dimensions of the PCP, defaults to all properties in the first feature that has data of type Number
+    "buffers" : [], // [Array] Array of numbers, must specify all; [top, right, bottom, left], defaults to [30, 10, 10, 10]
+    "width"   : 1,  // [Number] Width of the plot, defaults to 960
+    "height"  : 1,  // [Number] Height of the plot, defaults to 500 
+    "linker"  : lk  // [Function] Callback taking a single parameter, passed a D3 selection object containing all foreground lines representing the features in the collection.
 }
 
 ```
