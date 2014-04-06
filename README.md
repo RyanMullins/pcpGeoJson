@@ -15,7 +15,7 @@ Creates a parallel coordinate plot for the properties, with values of type _Numb
 
 The *collection* parameter is required and **must** be a GeoJSON Feature collection. Behavior is undefined if this parameter is not a Feature Collection. 
 
-The *options* parameter is optional object that allows you to define the following properties:
+The *options* parameter is an optional object that allows you to define the following properties:
 
 * _id_      : [String] The ID of the container for the PCP, defaults to 'body'
 * _keys_    : [Array] List of all property names to be used as dimensions of the PCP, defaults to all properties in the first feature that has data of type Number
