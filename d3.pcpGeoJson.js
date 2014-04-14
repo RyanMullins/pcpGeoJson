@@ -32,6 +32,10 @@ d3.pcpGeoJson = function (collection, options) {
 
   pcpForFeatures();
 
+  svg.lines = foreground;
+
+  return svg;
+
   // ---- Supporting Functions ----
 
   function pcpForFeatures () {
@@ -61,7 +65,17 @@ d3.pcpGeoJson = function (collection, options) {
       .selectAll("path")
         .data(collection.features)
       .enter().append("svg:path")
-        .attr("d", path);
+        .attr("d", path)
+        .on("click", function (feature, index) {
+          if (options.linker) { 
+            linker(feature, feature.type, "click"); 
+          } else {
+            foreground.classed("selected", function (d, i) {
+              if (d === feature) { return true; } 
+              return false;
+            });
+          }
+        });
 
     // Add a group element for each dimension.
     var g = svg.selectAll(".dimension")
