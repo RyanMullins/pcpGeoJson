@@ -125,10 +125,6 @@ d3.pcpGeoJson = function (collection, options) {
       .selectAll("rect")
         .attr("x", -8)
         .attr("width", 16);
-
-    if (typeof options.linker === "function") {
-      options.linker(foreground);
-    }
   }
 
   function position (key) {
