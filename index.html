@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Pcpgeojson by RyanMullins</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Pcpgeojson</h1>
+        <p>This is a D3 plugin that will create a Parallel Coordinate Plot from a GeoJSON Feature Collection. </p>
+
+        <p class="view"><a href="https://github.com/RyanMullins/pcpGeoJson">View the Project on GitHub <small>RyanMullins/pcpGeoJson</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/RyanMullins/pcpGeoJson/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/RyanMullins/pcpGeoJson/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/RyanMullins/pcpGeoJson">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="parallel-coordinate-plots-for-geojson-feature-collections" class="anchor" href="#parallel-coordinate-plots-for-geojson-feature-collections"><span class="octicon octicon-link"></span></a>Parallel Coordinate Plots for GeoJSON Feature Collections</h1>
+
+<p>This is an extremely simple plug-in for D3 that generates an SVG-based parallel coordinate plot for a <a href="http://geojson.org/">GeoJSON</a> <a href="http://geojson.org/geojson-spec.html#feature-collection-objects">Feature Collection</a>. </p>
+
+<p>This code was heavily influenced by <a href="https://www.jasondavies.com/">Jason Davies'</a> <a href="http://bl.ocks.org/jasondavies/1341281">Parallel Coordinates</a> example. In fact, you might even say I just straight-up copied the code and changed it to meet my needs. Because, that's exactly what I did. Thanks you, Jason, for this example. </p>
+
+<p>Again, this is an extremely simple implementation of a Parallel Coordinate Plot. If you need something more complex or detailed, I suggest you take a look at Syntagmatic's <a href="https://github.com/syntagmatic/parallel-coordinates">Parallel Coordinates</a> plug-in.</p>
+
+<h2>
+<a name="api" class="anchor" href="#api"><span class="octicon octicon-link"></span></a>API</h2>
+
+<p><a name="d3_pcpgeojson" href="#d3_pcpgeojson">#</a> d3.<strong>pcpGeoJson</strong>(<em>collection</em>[, <em>options</em>]);</p>
+
+<p>Creates a parallel coordinate plot for the properties, with values of type <em>Number</em>, of each <a href="http://geojson.org/geojson-spec.html#feature-objects">Features</a> in a <a href="http://geojson.org/geojson-spec.html#feature-collection-objects">Feature Collection</a>. </p>
+
+<p>The <em>collection</em> parameter is required and <strong>must</strong> be a GeoJSON Feature collection. Behavior is undefined if this parameter is not a Feature Collection. </p>
+
+<p>The <em>options</em> parameter is an optional object that allows you to define the following properties:</p>
+
+<ul>
+<li>
+<em>id</em>      : [String] The ID of the container for the PCP, defaults to 'body'</li>
+<li>
+<em>keys</em>    : [Array] List of all property names to be used as dimensions of the PCP, defaults to all properties in the first feature that has data of type Number</li>
+<li>
+<em>buffers</em> : [Array] Array of numbers, must specify all; [top, right, bottom, left], defaults to [30, 10, 10, 10]</li>
+<li>
+<em>width</em>   : [Number] Width of the plot, defaults to 960</li>
+<li>
+<em>height</em>  : [Number] Height of the plot, defaults to 500 </li>
+<li>
+<em>linker</em>  : [Function] Callback taking a single parameter, passed a D3 selection object containing all foreground lines representing the features in the collection.</li>
+</ul><h3>
+<a name="example-usage" class="anchor" href="#example-usage"><span class="octicon octicon-link"></span></a>Example Usage</h3>
+
+<div class="highlight highlight-HTML"><pre>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//d3.v3.min.js"</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//d3.pcpGeoJson.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"//d3.pcpGeoJson.css"</span> <span class="na">rel=</span><span class="s">'stylesheet'</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+  <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;</span>
+    <span class="nx">d3</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="s1">'collection.json'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">collection</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">console</span><span class="p">.</span><span class="nx">warn</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+      <span class="p">}</span>
+
+      <span class="nx">d3</span><span class="p">.</span><span class="nx">pcpGeoJson</span><span class="p">(</span><span class="nx">collection</span><span class="p">);</span>
+    <span class="p">})</span>
+  <span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+
+</pre></div>
+
+
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/RyanMullins">RyanMullins</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
