@@ -71,8 +71,7 @@ d3.pcpGeoJson = function (collection, options) {
             linker(feature, feature.type, "click"); 
           } else {
             foreground.classed("selected", function (d, i) {
-              if (d === feature) { return true; } 
-              return false;
+              return (d === feature);
             });
           }
         });
@@ -172,6 +171,8 @@ d3.pcpGeoJson = function (collection, options) {
 
     if (options.id === undefined || options.id === null) {
       options.id = "body";
+    } else {
+      options.id = "#" + options.id;
     }
 
     if (options.keys === undefined || options.keys === null) {

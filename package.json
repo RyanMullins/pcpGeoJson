@@ -1,0 +1,31 @@
+{
+  "name": "pcpGeoJson",
+  "version": "1.0.0",
+  "description": "Parallel Coordinate Plots from GeoJson Feature Collections",
+  "main": "d3.pcpGeoJson.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RyanMullins/pcpGeoJson.git"
+  },
+  "keywords": [
+    "parallel",
+    "coordinate",
+    "plots",
+    "d3",
+    "geojson",
+    "geovisualization"
+  ],
+  "author": "Ryan S Mullins",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RyanMullins/pcpGeoJson/issues"
+  },
+  "homepage": "https://github.com/RyanMullins/pcpGeoJson",
+  "devDependencies": {
+    "uglify-js": "^2.4.13",
+    "jshint": "^2.5.0"
+  }
+}
